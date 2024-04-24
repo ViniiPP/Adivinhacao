@@ -9,7 +9,8 @@ public class adivinhacao {
         int valorMinimo = 1;
         int valorMaximo = 100;
         int tentativas = 0;
-        int adivinhar = gerador.nextInt(valorMaximo) + 1; 
+        int adivinhar = gerador.nextInt(valorMaximo) + 1;
+        int distancia = Math.abs(adivinhar - valorMinimo);
 
         while (true) {
             System.out.println("Digite um número entre 1 e 100: ");
@@ -17,17 +18,29 @@ public class adivinhacao {
 
             if (palpite < 1 || palpite > 100) {
                 System.out.println("Número escolhido fora do intervalo de 1 e 100!");
-                continue; 
+                continue;
             }
 
             if (palpite < adivinhar) {
                 System.out.println("O número é maior");
                 valorMinimo = palpite + 1;
+                distancia = Math.abs(adivinhar - valorMinimo);
+                if (distancia <= 10) {
+                    System.out.println("Quente!");
+                } else {
+                    System.out.println("Frio!");
+                }
                 System.out.println("O número está entre " + valorMinimo + " e " + valorMaximo);
                 tentativas++;
             } else if (palpite > adivinhar) {
                 System.out.println("O número é menor");
                 valorMaximo = palpite - 1;
+                distancia = Math.abs(adivinhar - valorMaximo);
+                if (distancia <= 10) {
+                    System.out.println("Quente!");
+                } else {
+                    System.out.println("Frio!");
+                }
                 System.out.println("O número está entre " + valorMinimo + " e " + valorMaximo);
                 tentativas++;
             } else {
